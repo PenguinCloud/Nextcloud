@@ -1,0 +1,122 @@
+---
+- name: Install nextcloud server
+  hosts: localhost
+  connection: local
+  vars_files:
+    - vars/prod.yml
+  tasks:
+    - name: Install Nextcloud Dependencies
+      include_tasks:
+        file: jobs/build/install_dependancies.yml
+        apply:
+          tags:
+          - nginx
+          - php
+          - build
+      tags:
+      - nginx
+      - php
+      - build
+
+    - name: Install Nextcloud
+      include_tasks:
+        file: jobs/build/install_nextcloud.yml
+        apply:
+          tags:
+          - nextcloud
+          - build
+      tags:
+        - wordpress
+        - build
+
+    - name: Install Apps
+      include_tasks:
+        file: jobs/build/install_apps.yml
+        apply:
+          tags:
+          - apps
+          - build
+      tags:
+      - apps
+      - build
+
+    - name: Generate SSL certificate
+      include_tasks:
+        file: jobs/run/sslcertificate_generate.yml
+        apply:
+          tags:
+          - sslcertificate
+          - run
+      tags:
+      - sslcertificate
+      - run
+
+    - name: Configure NGINX
+      include_tasks:
+        file: jobs/run/config_nginx.yml
+        apply:
+          tags:
+          - nginx
+          - run
+      tags:
+      - nginx
+      - run
+
+    - name: Run nginx
+      include_tasks:
+        file: jobs/run/nginx.yml
+        apply:
+          tags:
+          - nginx
+          - run
+      tags:
+      - nginx
+      - run
+
+    - name: Test database connectivity
+      include_tasks:
+        file: jobs/tests/database_test.yml
+        apply:
+          tags:
+          - database
+          - test
+          - run
+      tags:
+      - database
+      - test
+      - run
+
+    - name: Test Nginx
+      include_tasks:
+        file: jobs/tests/nginx_test.yml
+        apply:
+          tags:
+          - nginx
+          - test
+          - run
+      tags:
+      - nginx
+      - test
+      - run
+
+    - name: Test URL
+      include_tasks:
+        file: jobs/tests/nextcloud_test.yml
+        apply:
+          tags:
+          - url
+          - test
+          - run
+      tags:
+      - url
+      - test
+      - run
+
+    - name: Execute NGINX
+      include_tasks:
+        file: jobs/exec/nginx.yml
+        apply:
+          tags:
+            - exec
+      tags:
+        - exec

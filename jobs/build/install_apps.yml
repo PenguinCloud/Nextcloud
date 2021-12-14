@@ -1,0 +1,12 @@
+---
+- name: Install apps
+  shell: |
+    u www-data php occ app:install polls
+    u www-data php occ app:install whiteboard
+    u www-data php occ app:install forms
+    u www-data php occ app:install mail
+    u www-data php occ app:install only office
+    u www-data php occ app:install appointments
+    u www-data php occ app:install passwords
+    u www-data php occ app:install talk
+    u www-data php occ app:install solid
