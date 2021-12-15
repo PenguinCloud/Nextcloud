@@ -3,9 +3,17 @@
   shell:
     cmd: nginx
 
-- name: Install and configure nextcloud
-  command: php occ  maintenance:install --database \
-    "mysql" --database-name "{{ database.name }}"  --database-user "{{ database.user }}" --database-pass \
-    "{{ database.password }}" --admin-user "admin" --admin-pass "password"
+- name: Run occ installation command
+  become: yes
+  command: >
+    php occ maintenance:install
+    --database=mysql
+    --database-host={{ database.host }}
+    --database-name={{ database.name }}
+    --database-user={{ database.user }}
+    --database-pass={{ database.password }}
+    --admin-user=admin
+    --admin-pass=password
   args:
     chdir: /opt/nextcloud
+    creates: /opt/nextcloud/config/config.php
