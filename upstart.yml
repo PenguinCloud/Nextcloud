@@ -29,20 +29,20 @@
         - wordpress
         - build
 
-    - name: Install Apps
-      include_tasks:
-        file: jobs/build/install_apps.yml
-        apply:
-          tags:
-          - apps
-          - build
-      tags:
-      - apps
-      - build
+#    - name: Install Apps
+#      include_tasks:
+#        file: jobs/build/install_apps.yml
+#        apply:
+#          tags:
+#          - apps
+#          - build
+#      tags:
+#      - apps
+#      - build
 
     - name: Generate SSL certificate
       include_tasks:
-        file: jobs/run/sslcertificate_generate.yml
+        file: jobs/run/ssl_generate.yml
         apply:
           tags:
           - sslcertificate
@@ -88,7 +88,7 @@
 
     - name: Test Nginx
       include_tasks:
-        file: jobs/tests/nginx_test.yml
+        file: jobs/tests/test_nginx.yml
         apply:
           tags:
           - nginx

@@ -1,4 +1,4 @@
-FROM penguinzmedia/ansible
+FROM penguintech/core-ansible
 LABEL maintainer="Penguinz Tech Group LLC"
 COPY . /opt/manager/
 ENV DATABASE_NAME="nextcloud"

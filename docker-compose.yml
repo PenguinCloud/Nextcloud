@@ -3,6 +3,7 @@ version: "2.4"
 services:
   mariadb:
     image: 'bitnami/mariadb:latest'
+
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
       - MARIADB_PASSWORD=p@ssword
@@ -12,6 +13,9 @@ services:
       - "3306:3306"
     networks:
       - nextcloud
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    volumes:
+      - /var/lib/mysql
 
   phpfpm:
     image: 'bitnami/php-fpm:latest'
@@ -29,6 +33,10 @@ services:
 
   nextcloud-server:
     build: .
+    links:
+      - mariadb
+    volumes:
+      - /opt/nextcloud
     environment:
       - DATABASE_HOST=mariadb
       - URL=https://127.0.0.1

@@ -26,10 +26,10 @@
 
 - name: Template a file to /etc/nginx/sites-available
   template:
-    src: template/nextcloud.j2
+    src: templates/nextcloud.j2
     dest: /etc/nginx/sites-enabled/"{{ organization.hostname }}"
 
 - name: Template a file to etc/nginx/sites-enabled
   template:
-    src: template/nextcloud.j2
+    src: templates/nextcloud.j2
     dest: /etc/nginx/sites-enabled/"{{ organization.hostname }}"

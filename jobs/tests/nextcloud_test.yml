@@ -1,5 +1,5 @@
 ---
-- name: Check that Wordpress runs
+- name: Check that Nextcloud runs
   uri:
     url: "{{ url }}"
     status_code: [200, 202]

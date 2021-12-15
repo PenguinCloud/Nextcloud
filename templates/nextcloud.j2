@@ -1,12 +1,12 @@
 upstream php-handler {
     server 127.0.0.1:9000;
-    server unix:/var/run/php/php7.4-fpm.sock;
+    # server unix:/var/run/php/php7.4-fpm.sock;
 }
 
 server {
     listen 80;
     listen [::]:80;
-    server_name {{ organisation.hostname }};
+    server_name {{ organization.hostname }};
 
     # Enforce HTTPS
     return 301 https://$server_name$request_uri;
@@ -15,7 +15,7 @@ server {
 server {
     listen 443      ssl http2;
     listen [::]:443 ssl http2;
-    server_name {{ organisation.hostname }};
+    server_name {{ organization.hostname }};
 
     # Use Mozilla's guidelines for SSL/TLS settings
     # https://mozilla.github.io/server-side-tls/ssl-config-generator/
@@ -161,3 +161,19 @@ server {
         try_files $uri $uri/ /index.php$request_uri;
     }
 }
+
+server {
+  listen 0.0.0.0:80;
+  server_name {{ organization.hostname }};
+
+ root opt/nextcloud;
+
+  location / {
+    try_files $uri $uri/index.php;
+  }
+
+  location ~ \.php$ {
+    # fastcgi_pass [PHP_FPM_LINK_NAME]:9000;
+    fastcgi_pass phpfpm:9000;
+    fastcgi_index index.php;
+    include fastcgi.conf;
