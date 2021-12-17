@@ -29,17 +29,6 @@
         - wordpress
         - build
 
-#    - name: Install Apps
-#      include_tasks:
-#        file: jobs/build/install_apps.yml
-#        apply:
-#          tags:
-#          - apps
-#          - build
-#      tags:
-#      - apps
-#      - build
-
     - name: Generate SSL certificate
       include_tasks:
         file: jobs/run/ssl_generate.yml
@@ -73,6 +62,43 @@
       - nginx
       - run
 
+    - name: Test URL
+      include_tasks:
+        file: jobs/tests/nextcloud_test.yml
+        apply:
+          tags:
+          - url
+          - test
+          - run
+      tags:
+      - url
+      - test
+      - run
+
+
+    - name: Configure nextcloud for start up
+      include_tasks:
+        file: jobs/run/config_nextcloud.yml
+        apply:
+          tags:
+          - config-nextcloud
+          - run
+      tags:
+      - config_nextcloud
+      - run
+
+    - name: Install nextcloud apps
+      include_tasks:
+        file: jobs/run/apps_nextcloud.yml
+        apply:
+          tags:
+          - app_install
+          - run
+      tags:
+      - app_install
+      - run
+
+
     - name: Test database connectivity
       include_tasks:
         file: jobs/tests/database_test.yml
@@ -99,24 +125,12 @@
       - test
       - run
 
-    - name: Test URL
-      include_tasks:
-        file: jobs/tests/nextcloud_test.yml
-        apply:
-          tags:
-          - url
-          - test
-          - run
-      tags:
-      - url
-      - test
-      - run
 
     - name: Execute NGINX
       include_tasks:
         file: jobs/exec/nginx.yml
         apply:
           tags:
-            - exec
+          - exec
       tags:
-        - exec
+      - exec

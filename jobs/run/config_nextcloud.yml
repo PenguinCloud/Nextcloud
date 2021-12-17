@@ -1,0 +1,37 @@
+---
+- name: Delete sample.config file
+  file:
+    path: /opt/nextcloud/config/config.sample.php
+    state: absent
+
+- name: Run occ installation command
+  become: yes
+  shell: |
+    php occ maintenance:install
+    --database=mysql
+    --database-host={{ database.host }}
+    --database-name={{ database.name }}
+    --database-user={{ database.user }}
+    --database-pass={{ database.password }}
+    --admin-user=admin
+    --admin-pass=password
+  args:
+    chdir: /opt/nextcloud
+    creates: /opt/nextcloud/config/config.php
+  notify: reload http
+
+- name: Run occ to set trusted domains
+  become: yes
+  shell: php occ config:system:set trusted_domains --value={{ trusted_domain }}
+  args:
+    chdir: /opt/nextcloud
+
+- name: Run OCC to set redis
+  become: yes
+  shell: |
+    php occ config:system:set redis host --value={{ redis.host }}
+    php occ config:system:set redis port --value={{ redis.port }}
+    php occ config:system:set redis password --value={{ redis.password }}
+    php occ config:system:set redis timeout --value={{ redis.timeout }}
+  args:
+    chdir: /opt/nextcloud

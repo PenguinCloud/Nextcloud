@@ -6,13 +6,21 @@ database:
   host: "{{ lookup('env', 'DATABASE_HOST') }}"
   port: "{{ lookup('env', 'DATABASE_PORT') }}"
 
-url: "{{ lookup('env', 'URL') }}"
-
 organization:
   name: "{{ lookup('env', 'ORGANIZATION_NAME') }}"
   country: "{{ lookup('env', 'ORGANIZATION_COUNTRY') }}"
   email: "{{ lookup('env', 'ORGANIZATION_EMAIL') }}"
   hostname: "{{ lookup('env', 'ORGANISATION_HOSTNAME') }}"
+
+redis:
+  host: "{{ lookup('env', 'REDIS_HOST') }}"
+  port: "{{ lookup('env', 'REDIS_PORT') }}"
+  password: "{{ lookup('env', 'REDIS_PASS') }}"
+  timeout: "{{ lookup('env', 'REDIS_TIMEOUT') }}"
+
+url: "{{ lookup('env', 'URL') }}"
+
+trusted_domain:  "{{ lookup('env', 'TRUSTED_DOMAIN') }}"
 
 cpu_count: "{{ lookup('env', 'CPU_COUNT') }}"
 

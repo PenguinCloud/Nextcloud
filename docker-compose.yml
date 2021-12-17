@@ -3,7 +3,6 @@ version: "2.4"
 services:
   mariadb:
     image: 'bitnami/mariadb:latest'
-
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
       - MARIADB_PASSWORD=p@ssword
@@ -13,20 +12,21 @@ services:
       - "3306:3306"
     networks:
       - nextcloud
-    volumes:
-      - /var/lib/mysql
-
-  phpfpm:
-    image: 'bitnami/php-fpm:latest'
-    networks:
-      - nextcloud
-    volumes:
-      - /path/to/app:/app
 
   redis:
     image: 'bitnami/redis:latest'
     environment:
-      - ALLOW_EMPTY_PASSWORD=yes
+      - REDIS_PASSWORD=password123
+    ports:
+      - "6379:6379"
+    networks:
+      - nextcloud
+
+
+  php-fpm:
+    image: 'bitnami/php-fpm:latest'
+    ports:
+      - "9000:9000"
     networks:
       - nextcloud
 
@@ -34,18 +34,17 @@ services:
     build: .
     links:
       - mariadb
-    volumes:
-      - /opt/nextcloud
+      - redis
+      - php-fpm
     environment:
       - DATABASE_HOST=mariadb
       - URL=https://127.0.0.1
     ports:
       - "80:80"
       - "443:443"
-      - "9000:9000"
     depends_on:
       - mariadb
-      - phpfpm
+      - php-fpm
       - redis
     networks:
       - nextcloud

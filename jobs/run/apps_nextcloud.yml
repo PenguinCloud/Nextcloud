@@ -1,5 +1,6 @@
 ---
-- name: Install apps
+- name: Run occ to install apps
+  become: yes
   shell: |
     php occ app:install polls
   args:
