@@ -22,7 +22,6 @@ services:
     networks:
       - nextcloud
 
-
   php-fpm:
     image: 'bitnami/php-fpm:latest'
     ports:
@@ -32,10 +31,6 @@ services:
 
   nextcloud-server:
     build: .
-    links:
-      - mariadb
-      - redis
-      - php-fpm
     environment:
       - DATABASE_HOST=mariadb
       - URL=https://127.0.0.1
@@ -58,4 +53,3 @@ services:
 
 networks:
   nextcloud:
-    driver: bridge
