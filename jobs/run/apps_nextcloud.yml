@@ -2,6 +2,6 @@
 - name: Run occ to install apps
   become: yes
   shell: |
-    php occ app:install polls
+  nextcloud.occ app:install polls
   args:
     chdir: /opt/nextcloud

@@ -18,6 +18,10 @@ redis:
   password: "{{ lookup('env', 'REDIS_PASS') }}"
   timeout: "{{ lookup('env', 'REDIS_TIMEOUT') }}"
 
+admin:
+  logging: "{{ lookup('env', 'ADMIN_LOGGING') }}"
+  password: "{{ lookup('env', 'ADMIN_PASS') }}"
+
 url: "{{ lookup('env', 'URL') }}"
 
 trusted_domain:  "{{ lookup('env', 'TRUSTED_DOMAIN') }}"

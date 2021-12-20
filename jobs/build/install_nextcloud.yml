@@ -4,4 +4,3 @@
     src: https://download.nextcloud.com/server/releases/latest.zip
     dest: /opt/
     remote_src: yes
-

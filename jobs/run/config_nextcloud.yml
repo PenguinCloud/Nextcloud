@@ -18,7 +18,6 @@
   args:
     chdir: /opt/nextcloud
     creates: /opt/nextcloud/config/config.php
-  notify: reload http
 
 - name: Run occ to set trusted domains
   become: yes
