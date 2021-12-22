@@ -86,16 +86,16 @@
       - config_nextcloud
       - run
 
-    - name: Install nextcloud apps
-      include_tasks:
-        file: jobs/run/apps_nextcloud.yml
-        apply:
-          tags:
-          - app_install
-          - run
-      tags:
-      - app_install
-      - run
+#    - name: Install nextcloud apps
+#      include_tasks:
+#        file: jobs/run/apps_nextcloud.yml
+#        apply:
+#          tags:
+#          - app_install
+#          - run
+#      tags:
+#      - app_install
+#      - run
 
     - name: Test database connectivity
       include_tasks:
