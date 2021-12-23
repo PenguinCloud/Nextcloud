@@ -7,13 +7,8 @@
     owner: www-data
     group: www-data
 
-- name: Delete sample.config file
-  file:
-    path: /opt/nextcloud/config/config.sample.php
-    state: absent
-
 - name: Run occ installation command
-  command: >
+  shell: |
     php occ maintenance:install
     --database=mysql
     --database-host={{ database.host }}
@@ -29,6 +24,9 @@
   args:
     chdir: /opt/nextcloud
     creates: /opt/nextcloud/config/config.php
+
+
+
 
 #- name: Run occ to set trusted domains
 #  shell: php occ config:system:set trusted_domains --value={{ trusted_domain }}

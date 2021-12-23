@@ -1,0 +1,12 @@
+<?php
+$AUTOCONFIG = array(
+  "dbtype"        => "mysql",
+  "dbname"        => "{{ database.name }}",
+  "dbuser"        => "{{ database.user }}",
+  "dbpass"        => "{{ database.password }}",
+  "dbhost"        => "{{ database.host }}",
+  "dbtableprefix" => "",
+  "adminlogin"    => "{{ admin.logging }}",
+  "adminpass"     => "{{ admin.password }}",
+  "directory"     => "/bitnami/mariadb/data",
+);
