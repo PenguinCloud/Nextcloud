@@ -2,9 +2,11 @@
 version: "2.4"
 services:
   mariadb:
-    image: 'bitnami/mariadb:latest'
+    image: 'mariadb:latest'
+    restart: always
+    command:  --transaction-isolation=READ-COMMITTED --binlog-format=ROW --skip-innodb-read-only-compressed
     environment:
-      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=yes
       - MARIADB_PASSWORD=p@ssword
       - MARIADB_DATABASE=nextcloud
       - MARIADB_USER=nextcloud

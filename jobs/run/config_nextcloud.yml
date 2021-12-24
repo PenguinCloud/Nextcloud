@@ -1,14 +1,6 @@
 ---
-- name: Change ownership of the directory
-  ansible.builtin.file:
-    path: /opt/nextcloud
-    state: directory
-    recurse: yes
-    owner: www-data
-    group: www-data
-
 - name: Run occ installation command
-  shell: |
+  command: >
     php occ maintenance:install
     --database=mysql
     --database-host={{ database.host }}
@@ -17,32 +9,20 @@
     --database-pass={{ database.password }}
     --admin-user=admin
     --admin-pass=password
-    php occ maintenance:mode --off
-  become: yes
-  become_user: www-data
-  become_method: runas
   args:
     chdir: /opt/nextcloud
-    creates: /opt/nextcloud/config/config.php
+
+- name: Run occ to set trusted domains
+  shell: php occ config:system:set trusted_domains --value={{ trusted_domain }}
+  args:
+    chdir: /opt/nextcloud
 
 
-
-
-#- name: Run occ to set trusted domains
-#  shell: php occ config:system:set trusted_domains --value={{ trusted_domain }}
-#  become: yes
-#  become_user: www-data
-#  become_method: runas
-#  args:
-#    chdir: /opt/nextcloud
-
-#- name: Run OCC to set redis
-#  shell: |
-#    php occ config:system:set redis host --value={{ redis.host }}
-#    php occ config:system:set redis port --value={{ redis.port }}
-#    php occ config:system:set redis password --value={{ redis.password }}
-#    php occ config:system:set redis timeout --value={{ redis.timeout }}
-#  become: yes
-#  become_user: www-data
-#  args:
-#    chdir: /opt/nextcloud
+- name: Run OCC to set redis
+  command: >
+    php occ config:system:set redis host --value={{ redis.host }}
+    php occ config:system:set redis port --value={{ redis.port }}
+    php occ config:system:set redis password --value={{ redis.password }}
+    php occ config:system:set redis timeout --value={{ redis.timeout }}
+  args:
+    chdir: /opt/nextcloud

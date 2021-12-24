@@ -1,8 +1,6 @@
 ---
 - name: Run occ to install apps
-  shell: php occ app:install polls
-  become: yes
-  become_user: www-data
-  become_method: runas
+  command: php occ app:install "{{ item }}"
+  with_items: "{{ apps }}"
   args:
     chdir: /opt/nextcloud
