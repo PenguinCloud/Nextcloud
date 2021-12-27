@@ -32,3 +32,20 @@ file_limit: "{{ lookup('env', 'FILE_LIMIT') }}"
 
 apps:
   - polls
+  - forms
+  - mail
+  - onlyoffice
+  - appointments
+  - passman
+  - spreed
+  - solid
+
+app_links:
+  - https://github.com/nextcloud/polls/releases/download/v3.4.0-beta1/polls.tar.gz
+  - https://github.com/nextcloud-releases/forms/releases/download/v2.4.0/forms-v2.4.0.tar.gz
+  - https://github.com/nextcloud-releases/mail/releases/download/v1.11.4/mail-v1.11.4.tar.gz
+  - https://github.com/ONLYOFFICE/onlyoffice-nextcloud/releases/download/v7.2.1/onlyoffice.tar.gz
+  - https://github.com/SergeyMosin/Appointments/raw/82836bdefb36676d7f256571f2f5dd64d4635eed/build/artifacts/appstore/appointments.tar.gz
+  - https://releases.passman.cc/passman_2.4.0.tar.gz
+  - https://github.com/nextcloud-releases/spreed/releases/download/v13.0.0-rc.4/spreed-v13.0.0-rc.4.tar.gz
+  - https://github.com/pdsinterop/solid-nextcloud/releases/download/v0.4.2/solid.tar.gz

@@ -1,4 +1,9 @@
 ---
+- name: Check if config file exsists
+  stat:
+    path: /opt/nextcloud/config/config.php
+  register: result
+
 - name: Run occ installation command
   command: >
     php occ maintenance:install
@@ -7,16 +12,16 @@
     --database-name={{ database.name }}
     --database-user={{ database.user }}
     --database-pass={{ database.password }}
-    --admin-user=admin
-    --admin-pass=password
+    --admin-user={{ admin.logging }}
+    --admin-pass={{ admin.password }}
   args:
     chdir: /opt/nextcloud
+  when: result.stat.exists == False
 
 - name: Run occ to set trusted domains
   shell: php occ config:system:set trusted_domains --value={{ trusted_domain }}
   args:
     chdir: /opt/nextcloud
-
 
 - name: Run OCC to set redis
   command: >
