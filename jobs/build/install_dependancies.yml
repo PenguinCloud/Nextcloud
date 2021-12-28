@@ -1,0 +1,21 @@
+---
+- name: Install Dependencies
+  apt:
+    pkg:
+    - nginx
+    - php
+    - php-gd
+    - php-mysql
+    - php-curl
+    - php-mbstring
+    - php-intl
+    - php-gmp
+    - php-bcmath
+    - php-imagick
+    - php-xml
+    - php-zip
+    - php-json
+    - python-openssl
+    state: latest
+    update_cache: yes
+
