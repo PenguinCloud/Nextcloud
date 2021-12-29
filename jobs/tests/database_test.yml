@@ -1,3 +1,8 @@
 ---
 - name: Check database connectivity
-  shell: "mysql -u {{ database.user }} -p{{ database.password }} -h {{ database.host }} -P {{ database.port }} {{ database.name }}"
+  mysql_db:
+    login_user="{{ database.user }}"
+    login_password="{{ database.password }}"
+    login_host="{{ database.host }}"
+    login_port="{{ database.port }}"
+    name="{{ database.name }}"
