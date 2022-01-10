@@ -2,7 +2,7 @@
 - name: Install Dependencies
   apt:
     pkg:
-    - nginx
+    - nginx-core
     - php
     - php-gd
     - php-mysql

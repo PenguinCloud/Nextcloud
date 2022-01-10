@@ -1,6 +1,10 @@
-.idea
 .yaml
+*secret*
+.id*
 .key
 .crt
-venv
+venv/
+.idea/
 .json
+
+
