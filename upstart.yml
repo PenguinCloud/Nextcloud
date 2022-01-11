@@ -73,6 +73,19 @@
         - nginx
         - run
 
+    - name: Test database connectivity
+      include_tasks:
+        file: jobs/tests/database_test.yml
+        apply:
+          tags:
+          - database
+          - test
+          - run
+      tags:
+      - database
+      - test
+      - run
+
     - name: Configure nextcloud for start up
       include_tasks:
         file: jobs/run/config_nextcloud.yml
@@ -93,19 +106,6 @@
           - run
       tags:
       - app_install
-      - run
-
-    - name: Test database connectivity
-      include_tasks:
-        file: jobs/tests/database_test.yml
-        apply:
-          tags:
-          - database
-          - test
-          - run
-      tags:
-      - database
-      - test
       - run
 
     - name: Test Nginx
