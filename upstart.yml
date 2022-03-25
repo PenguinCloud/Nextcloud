@@ -1,91 +1,51 @@
 ---
-- name: Install nextcloud server
-  hosts: localhost
+- hosts: localhost
   connection: local
   vars_files:
-    - vars/prod.yml
+    - vars/base.yml
+  become: yes
+  become_user: root
+  remote_user: root
   tasks:
-    - name: Install Nextcloud Dependencies
-      include_tasks:
-        file: jobs/build/install_dependancies.yml
-        apply:
-          tags:
-          - nginx
-          - php
-          - build
+    - name: Include nodeType variables
+      include_vars:
+        file: "vars/{{ BUILD_ENVIRONMENT }}.yml"
       tags:
-      - nginx
-      - php
-      - build
-
-    - name: Install Nextcloud
+        - always
+      ignore_errors: yes
+    - name: Include Special Variables
+      include_vars:
+        file: "vars/{{ lookup('env', 'COMPUTE_ENV') | default( 'base', True) }}.yml"
+      ignore_errors: yes
+    - name: Build And Install
       include_tasks:
-        file: jobs/build/install_nextcloud.yml
+        file: jobs/build/build.yml
         apply:
           tags:
-          - nextcloud
-          - build
-      tags:
-        - wordpress
-        - build
-
-    - name: Download and extract apps
-      include_tasks:
-        file: jobs/build/apps.yml
-        apply:
-          tags:
-            - apps_download
             - build
       tags:
-        - apps_download
         - build
-
-    - name: Generate SSL certificate
+    - name: Run Configuration and Live
       include_tasks:
-        file: jobs/run/ssl_generate.yml
+        file: jobs/run/run.yml
         apply:
           tags:
-          - sslcertificate
-          - run
-      tags:
-      - sslcertificate
-      - run
-
-    - name: Configure NGINX
-      include_tasks:
-        file: jobs/run/config_nginx.yml
-        apply:
-          tags:
-          - nginx
-          - run
-      tags:
-      - nginx
-      - run
-
-    - name: Run nginx
-      include_tasks:
-        file: jobs/run/nginx.yml
-        apply:
-          tags:
-            - nginx
             - run
       tags:
-        - nginx
         - run
-
+#    The database test needs to run before we run the commands to install nextcloud to create the php.config file
     - name: Test database connectivity
       include_tasks:
         file: jobs/tests/database_test.yml
         apply:
           tags:
-          - database
-          - test
-          - run
+            - database_connectivity
+            - test
+            - run
       tags:
-      - database
-      - test
-      - run
-
+        - database_connectivity
+        - test
+        - run
     - name: Configure nextcloud for start up
       include_tasks:
         file: jobs/run/config_nextcloud.yml
@@ -94,9 +54,9 @@
           - config-nextcloud
           - run
       tags:
-      - config_nextcloud
-      - run
-
+        - config_nextcloud
+        - run
+#   Only after nextcloud is installed can the apps be installed
     - name: Install nextcloud apps
       include_tasks:
         file: jobs/run/apps_nextcloud.yml
@@ -108,37 +68,24 @@
       - app_install
       - run
 
-    - name: Test Nginx
+    - name: Run tests to make sure build and run applied application correctly
       include_tasks:
-        file: jobs/tests/test_nginx.yml
-        apply:
-          tags:
-          - nginx
-          - test
-          - run
+        file: jobs/tests/test.yml
       tags:
-      - nginx
-      - test
-      - run
-
-    - name: Test URL
-      include_tasks:
-        file: jobs/tests/nextcloud_test.yml
-        apply:
-          tags:
-            - url
-            - test
-            - run
-      tags:
-        - url
-        - test
         - run
-
-    - name: Execute NGINX
+        - test
+    - name: Execute application
       include_tasks:
-        file: jobs/exec/nginx.yml
+        file: jobs/exec/exec.yml
         apply:
           tags:
-          - exec
+            - exec
       tags:
-      - exec
+        - exec
+#    This section is not needed because we enable nginx daemon
+#    - name: Run tests to make sure app is running as expected
+#      include_tasks:
+#        file: jobs/run/test.yml
+#      tags:
+#        - exec
+#        - test

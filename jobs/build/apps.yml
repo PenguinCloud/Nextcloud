@@ -4,4 +4,4 @@
     src: "{{ item }}"
     dest: /opt/nextcloud/apps
     remote_src: yes
-  with_items: "{{ app_links }}"
+  with_items: "{{ nextcloud_apps }}"

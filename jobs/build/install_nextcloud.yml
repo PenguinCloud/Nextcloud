@@ -1,7 +1,7 @@
 ---
 - name: Extract and download Nextcloud
   ansible.builtin.unarchive:
-    src: https://download.nextcloud.com/server/releases/latest.zip
+    src: "{{ app_link }}"
     dest: /opt/
     remote_src: yes
 

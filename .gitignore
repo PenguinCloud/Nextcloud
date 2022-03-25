@@ -1,10 +1,7 @@
-.yaml
+*.yaml
 *secret*
-.id*
-.key
-.crt
+id_rsa*
+*.key
 venv/
 .idea/
-.json
-
-
+*.json

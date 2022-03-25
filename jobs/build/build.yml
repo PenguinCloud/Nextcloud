@@ -1,0 +1,12 @@
+---
+- name: Install Nextcloud Dependencies
+  include_tasks:
+    file: jobs/build/install_dependancies.yml
+
+- name: Install Nextcloud
+  include_tasks:
+    file: jobs/build/install_nextcloud.yml
+
+- name: Download and extract apps
+  include_tasks:
+    file: jobs/build/apps.yml

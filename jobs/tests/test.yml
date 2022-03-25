@@ -1,0 +1,8 @@
+---
+- name: Test Nginx
+  include_tasks:
+    file: jobs/tests/test_nginx.yml
+
+- name: Test URL
+  include_tasks:
+    file: jobs/tests/nextcloud_test.yml
