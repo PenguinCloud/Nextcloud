@@ -67,10 +67,13 @@
       tags:
       - app_install
       - run
-
     - name: Run tests to make sure build and run applied application correctly
       include_tasks:
         file: jobs/tests/test.yml
+        apply:
+          tags:
+            - run
+            - test
       tags:
         - run
         - test

@@ -51,3 +51,10 @@ nextcloud_apps:
   - https://releases.passman.cc/passman_2.4.0.tar.gz
   - https://github.com/nextcloud-releases/spreed/releases/download/v13.0.0-rc.4/spreed-v13.0.0-rc.4.tar.gz
   - https://github.com/pdsinterop/solid-nextcloud/releases/download/v0.4.2/solid.tar.gz
+
+ssl_key: "{{ lookup('env', 'SSL_KEY') }}"
+ssl_cert: "{{ lookup('env', 'SSL_CERTIFICATE') }}"
+
+ports:
+  - 80
+  - 443

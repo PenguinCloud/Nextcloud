@@ -1,9 +1,12 @@
 ---
 - name: Test for running nginx
-  shell: ps axuf|grep 'nginx'|grep -v "grep" | tr -d "\n" | cat
+  shell: ps waux | grep nginx
+  register: nginx_result
+  failed_when: nginx_result.stdout_lines | length == 1
 
-- name: Test service on port 80
-  shell: netstat -tunlp | grep ":80 " | sed -e 's/.*\///'
-
-- name: Test service on port 443
-  shell: netstat -tunlp | grep ":443 " | sed -e 's/.*\///'
+- name: Check if port 80 and 443 are listening
+  wait_for:
+    port: "{{ item }}"
+    delay: 5
+    timeout: 10
+  with_items: "{{ ports }}"
