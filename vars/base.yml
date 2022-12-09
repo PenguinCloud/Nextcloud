@@ -63,6 +63,3 @@ nextcloud_apps:
 ssl_key: "{{ lookup('env', 'SSL_KEY') }}"
 ssl_cert: "{{ lookup('env', 'SSL_CERTIFICATE') }}"
 
-ports:
-  - 80
-  - 443
