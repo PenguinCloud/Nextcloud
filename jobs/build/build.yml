@@ -1,12 +1,20 @@
 ---
 - name: Install Nextcloud Dependencies
   include_tasks:
-    file: jobs/build/install_dependancies.yml
+    file: install_dependancies.yml
 
 - name: Install Nextcloud
   include_tasks:
-    file: jobs/build/install_nextcloud.yml
+    file: install_nextcloud.yml
 
-- name: Download and extract apps
+#- name: Download and extract apps
+#  include_tasks:
+#    file: jobs/build/apps.yml
+
+- name: set permissions for nginx
   include_tasks:
-    file: jobs/build/apps.yml
+    file: permissions_nginx.yml
+
+- name: Set permissions for php-fpm
+  include_tasks:
+    file: permissions_phpfpm.yml
