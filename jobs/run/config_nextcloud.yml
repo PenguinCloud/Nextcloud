@@ -18,10 +18,10 @@
     chdir: /opt/nextcloud
   when: result.stat.exists == False
 
-- name: Run occ to set trusted domains
-  shell: php occ config:system:set trusted_domains --value={{ trusted_domain }}
-  args:
-    chdir: /opt/nextcloud
+#- name: Run occ to set trusted domains
+#  shell: php occ config:system:set trusted_domains --value={{ trusted_domain }}
+#  args:
+#    chdir: /opt/nextcloud
 
 - name: Run OCC to set redis
   command: >

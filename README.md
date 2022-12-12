@@ -1,7 +1,6 @@
-# Akaunting
+# Nextcloud
 
->>Akaunting is a free, open source online accounting software designed for small businesses and freelancers. 
-> It is built with modern technologies such as Laravel, VueJS, Tailwind, RESTful API etc.
+>>Nextcloud is a file-sharing and collaboration platform. Using Nextcloud, you can set up a virtual private server for your company or organization to share files internally. Alternatively, you can use it to store your files on your own computer privately.
 > 
 # Why this image vs others
 ## Built in self testing and healing

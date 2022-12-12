@@ -48,18 +48,18 @@ apps:
   - appointments
   - passman
   - spreed
-  - solid
 
 nextcloud_apps:
-  - https://github.com/nextcloud/polls/releases/download/v3.4.0-beta1/polls.tar.gz
-  - https://github.com/nextcloud-releases/forms/releases/download/v2.4.0/forms-v2.4.0.tar.gz
-  - https://github.com/nextcloud-releases/mail/releases/download/v1.11.4/mail-v1.11.4.tar.gz
-  - https://github.com/ONLYOFFICE/onlyoffice-nextcloud/releases/download/v7.2.1/onlyoffice.tar.gz
-  - https://github.com/SergeyMosin/Appointments/raw/82836bdefb36676d7f256571f2f5dd64d4635eed/build/artifacts/appstore/appointments.tar.gz
-  - https://releases.passman.cc/passman_2.4.0.tar.gz
-  - https://github.com/nextcloud-releases/spreed/releases/download/v13.0.0-rc.4/spreed-v13.0.0-rc.4.tar.gz
-  - https://github.com/pdsinterop/solid-nextcloud/releases/download/v0.4.2/solid.tar.gz
+  - https://github.com/nextcloud/polls/releases/download/v4.0.0/polls.tar.gz
+  - https://github.com/nextcloud/forms/releases/download/v3.0.1/forms.tar.gz
+  - https://github.com/nextcloud-releases/mail/releases/download/v2.2.1/mail-v2.2.1.tar.gz
+  - https://github.com/ONLYOFFICE/onlyoffice-nextcloud/releases/download/v7.6.8/onlyoffice.tar.gz
+  - https://github.com/SergeyMosin/Appointments/raw/v1.14.6/build/artifacts/appstore/appointments.tar.gz
+  - https://releases.passman.cc/passman_2.4.2.tar.gz
+  - https://github.com/nextcloud-releases/spreed/releases/download/v15.0.2/spreed-v15.0.2.tar.gz
 
 ssl_key: "{{ lookup('env', 'SSL_KEY') }}"
 ssl_cert: "{{ lookup('env', 'SSL_CERTIFICATE') }}"
 
+ports:
+  8080

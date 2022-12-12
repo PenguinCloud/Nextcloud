@@ -7,9 +7,9 @@
   include_tasks:
     file: install_nextcloud.yml
 
-#- name: Download and extract apps
-#  include_tasks:
-#    file: jobs/build/apps.yml
+- name: Download and extract apps
+  include_tasks:
+    file: jobs/build/download_apps.yml
 
 - name: set permissions for nginx
   include_tasks:

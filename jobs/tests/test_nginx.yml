@@ -4,7 +4,7 @@
   register: nginx_result
   failed_when: nginx_result.stdout_lines | length == 1
 
-- name: Check if port 80 and 443 are listening
+- name: Check if port 8080 is listening
   wait_for:
     port: "{{ item }}"
     delay: 5
