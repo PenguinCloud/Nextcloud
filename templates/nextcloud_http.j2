@@ -1,7 +1,7 @@
 server {
-    listen 8080;
-    listen [::]:8080;
-    server_name localhost.nextcloud;
+    listen {{ ports.http }};
+    listen [::]:{{ ports.http }};
+    server_name {{ server_address }};
 
     # Add headers to serve security related headers
     add_header X-Content-Type-Options nosniff;

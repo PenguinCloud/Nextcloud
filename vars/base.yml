@@ -40,6 +40,14 @@ file_limit: "{{ lookup('env', 'FILE_LIMIT') }}"
 
 app_link: "{{ lookup('env', 'APP_LINK') }}"
 
+ports:
+  http: "{{ lookup('env', 'HTTP_PORT') }}"
+  https: "{{ lookup('env', 'HTTPS_PORT') }}"
+
+ssl_cert: "{{ lookup('env', 'SSL_CERT') }}"
+
+protocol: "{{ lookup('env', 'PROTOCOL') }}"
+
 apps:
   - polls
   - forms
@@ -63,3 +71,4 @@ ssl_cert: "{{ lookup('env', 'SSL_CERTIFICATE') }}"
 
 ports:
   8080
+  8443

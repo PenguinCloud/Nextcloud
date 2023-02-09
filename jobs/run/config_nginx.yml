@@ -5,8 +5,17 @@
     dest: /etc/nginx/nginx.conf
     force: yes
 
-- name: Configure nginx weberver
+- name: Configure nginx http webserver
   template:
-    src: /opt/manager/templates/nextcloud.j2
-    dest: /etc/nginx/conf.d/nextcloud.conf
+    src: /opt/manager/templates/nextcloud_http.j2
+    dest: /etc/nginx/conf.d/nextcloud_http.conf
     force: yes
+  when: protocol == "http"
+
+- name: Configure nginx https webserver
+  template:
+    src: /opt/manager/templates/nextcloud_https.j2
+    dest: /etc/nginx/conf.d/nextcloud_https.conf
+    force: yes
+  when: protocol == "https"
+
