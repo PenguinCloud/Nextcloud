@@ -44,6 +44,8 @@ ports:
   http: "{{ lookup('env', 'HTTP_PORT') }}"
   https: "{{ lookup('env', 'HTTPS_PORT') }}"
 
+server_address: "{{ lookup('env', 'SERVER_ADDRESS') }}"
+
 ssl_cert: "{{ lookup('env', 'SSL_CERT') }}"
 
 protocol: "{{ lookup('env', 'PROTOCOL') }}"
@@ -66,9 +68,6 @@ nextcloud_apps:
   - https://releases.passman.cc/passman_2.4.2.tar.gz
   - https://github.com/nextcloud-releases/spreed/releases/download/v15.0.2/spreed-v15.0.2.tar.gz
 
-ssl_key: "{{ lookup('env', 'SSL_KEY') }}"
-ssl_cert: "{{ lookup('env', 'SSL_CERTIFICATE') }}"
-
-ports:
+test_ports:
   8080
   8443
