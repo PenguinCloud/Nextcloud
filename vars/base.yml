@@ -69,5 +69,5 @@ nextcloud_apps:
   - https://github.com/nextcloud-releases/spreed/releases/download/v15.0.2/spreed-v15.0.2.tar.gz
 
 test_ports:
-  8080
-  8443
+  - 8080
+  - 8443

@@ -40,7 +40,7 @@ ENV FILE_LIMIT=1042
 ENV HTTP_PORT=8080
 ENV HTTPS_PORT=8443
 ENV SSL_CERT="open"
-ENV PROTOCOL="http"
+ENV PROTOCOL="https"
 
 # Switch to non-root user
 USER ptg-user
