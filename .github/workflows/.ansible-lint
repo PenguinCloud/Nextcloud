@@ -124,3 +124,9 @@ kinds:
 
 # Allow setting custom prefix for name[prefix] rule
 task_name_prefix: "{stem} | "
+offline: false 
+mock_modules:
+  - community.crypto.openssl_privatekey
+  - community.crypto.openssl_csr
+  - community.crypto.x509_certificate
+  - community.mysql.mysql_db

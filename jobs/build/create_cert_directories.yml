@@ -1,27 +1,27 @@
 ---
 - name: Create keys directory
-  file:
+  ansible.builtin.file:
     path: /opt/key_ssl
     state: directory
     owner: "{{ run.user }}"
     group: "{{ run.user }}"
 
 - name: Create private cert directory
-  file:
+  ansible.builtin.file:
     path: /opt/key_ssl/private
     state: directory
     owner: "{{ run.user }}"
     group: "{{ run.user }}"
 
 - name: Create csr directory
-  file:
+  ansible.builtin.file:
     path: /opt/key_ssl/csr
     state: directory
     owner: "{{ run.user }}"
     group: "{{ run.user }}"
 
 - name: Create crt repo
-  file:
+  ansible.builtin.file:
     path: /opt/key_ssl/crt
     state: directory
     owner: "{{ run.user }}"

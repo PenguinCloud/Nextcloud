@@ -1,10 +1,10 @@
 ---
 - name: Add php repo
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: ppa:ondrej/php
     state: present
 - name: Install Dependencies
-  apt:
+  ansible.builtin.apt:
     pkg:
       - nginx-core
       - php8.1

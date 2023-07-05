@@ -1,6 +1,6 @@
 ---
 - name: Check database connectivity
-  mysql_db:
+  community.mysql.mysql_db:
     login_user: "{{ database.user }}"
     login_password: "{{ database.password }}"
     login_host: "{{ database.host }}"
