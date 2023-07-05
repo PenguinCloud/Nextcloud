@@ -1,12 +1,10 @@
 ---
 run:
   user: ptg-user
-
 app:
   title: "{{ lookup('ansible.builtin.env', 'APP_TILE') }}"
   link: "{{ lookup('env', 'APP_LINK') }}"
   version: "{{ lookup('env', 'APP_VERSION') }}"
-
 database:
   name: "{{ lookup('env', 'DATABASE_NAME') }}"
   user: "{{ lookup('env', 'DATABASE_USER') }}"
@@ -14,43 +12,30 @@ database:
   host: "{{ lookup('env', 'DATABASE_HOST') }}"
   port: "{{ lookup('env', 'DATABASE_PORT') }}"
   type: "{{ lookup('env', 'DATABASE_TYPE') }}"
-
 organization:
   name: "{{ lookup('env', 'ORGANIZATION_NAME') }}"
   country: "{{ lookup('env', 'ORGANIZATION_COUNTRY') }}"
   email: "{{ lookup('env', 'ORGANIZATION_EMAIL') }}"
   hostname: "{{ lookup('env', 'ORGANISATION_HOSTNAME') }}"
-
 redis:
   host: "{{ lookup('env', 'REDIS_HOST') }}"
   port: "{{ lookup('env', 'REDIS_PORT') }}"
   password: "{{ lookup('env', 'REDIS_PASS') }}"
   timeout: "{{ lookup('env', 'REDIS_TIMEOUT') }}"
-
 admin:
   logging: "{{ lookup('env', 'ADMIN_LOGGING') }}"
   password: "{{ lookup('env', 'ADMIN_PASS') }}"
-
 url: "{{ lookup('env', 'URL') }}"
-
-trusted_domain:  "{{ lookup('env', 'TRUSTED_DOMAIN') }}"
-
+trusted_domain: "{{ lookup('env', 'TRUSTED_DOMAIN') }}"
 cpu_count: "{{ lookup('env', 'CPU_COUNT') }}"
-
 file_limit: "{{ lookup('env', 'FILE_LIMIT') }}"
-
 app_link: "{{ lookup('env', 'APP_LINK') }}"
-
 ports:
   http: "{{ lookup('env', 'HTTP_PORT') }}"
   https: "{{ lookup('env', 'HTTPS_PORT') }}"
-
 server_address: "{{ lookup('env', 'SERVER_ADDRESS') }}"
-
 ssl_cert: "{{ lookup('env', 'SSL_CERT') }}"
-
 protocol: "{{ lookup('env', 'PROTOCOL') }}"
-
 apps:
   - polls
   - forms
@@ -59,7 +44,6 @@ apps:
   - appointments
   - passman
   - spreed
-
 nextcloud_apps:
   - https://github.com/nextcloud/polls/releases/download/v4.0.0/polls.tar.gz
   - https://github.com/nextcloud/forms/releases/download/v3.0.1/forms.tar.gz
