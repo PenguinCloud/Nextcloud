@@ -1,0 +1,28 @@
+---
+apps:
+  - forms
+  - passman
+  - spreed
+  - external
+  - files_retention
+  - impersonate
+  - end_to_end_encryption
+  - sociallogin
+  - calendar
+  - fulltextsearch1
+  - files_fulltextsearch
+  - sorts
+  - recognize
+  - twofactor_totp
+  - twofactor_email
+  - registration
+  - guests
+  - sendent
+  - admin_notifications
+  - quota_warning
+  - integration_giphy
+  - integration_github
+  - integration_moodle
+  - groupquota
+  - group_default_quota
+  - groupfolders
