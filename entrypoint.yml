@@ -7,7 +7,7 @@
     - vars/apps.yml
   tasks:
     - name: Build Actions
-      tags: 
+      tags:
         - build
       block:
         - name: Install Nextcloud Dependencies
@@ -39,11 +39,10 @@
           include_tasks:
             file: jobs/build/create_cert_directories.yml
             apply:
-              tags:
+              tags:1
                 - build
- 
     - name: Run Actions
-      tags: 
+      tags:
         - run
       block:
         - name: Generate SSL certificate
@@ -59,7 +58,7 @@
             file: config_phpfpm.yml
             apply:
               tags:
-                - run             
+                - run   
         - name: Configure NGINX
           include_tasks:
             file: jobs/run/config_nginx.yml
@@ -83,10 +82,11 @@
             file: jobs/run/apps_nextcloud.yml
             apply:
               tags:
-                - run           
+                - run
         - name: Test Nginx
           include_tasks:
             file: jobs/tests/test_nginx.yml
             apply:
               tags:
-                - run  
+                - run
+99991
