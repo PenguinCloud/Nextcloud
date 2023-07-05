@@ -1,27 +1,29 @@
 ---
 - name: Check if config file exsists
-  stat:
+  ansible.builtin.stat:
     path: /opt/nextcloud/config/config.php
   register: result
 
 - name: Run occ installation command
-  command: >
-    php occ maintenance:install
-    --database={{ database.type}}
-    --database-host={{ database.host }}
-    --database-name={{ database.name }}
-    --database-user={{ database.user }}
-    --database-pass={{ database.password }}
-    --admin-user={{ admin.logging }}
-    --admin-pass={{ admin.password }}
-  args:
+  ansible.builtin.shell:
+    cmd: |
+      php occ maintenance:install
+      --database={{ database.type}}
+      --database-host={{ database.host }}
+      --database-name={{ database.name }}
+      --database-user={{ database.user }}
+      --database-pass={{ database.password }}
+      --admin-user={{ admin.logging }}
+      --admin-pass={{ admin.password }}
     chdir: /opt/nextcloud
+    become_user: www-data
   when: result.stat.exists == False
 - name: Run OCC to set redis
-  command: >
-    php occ config:system:set redis host --value={{ redis.host }}
-    php occ config:system:set redis port --value={{ redis.port }}
-    php occ config:system:set redis password --value={{ redis.password }}
-    php occ config:system:set redis timeout --value={{ redis.timeout }}
-  args:
+  ansible.builtin.shell: 
+    cmd: |
+      php occ config:system:set redis host --value={{ redis.host }}
+      php occ config:system:set redis port --value={{ redis.port }}
+      php occ config:system:set redis password --value={{ redis.password }}
+      php occ config:system:set redis timeout --value={{ redis.timeout }}
     chdir: /opt/nextcloud
+    become_user: www-data

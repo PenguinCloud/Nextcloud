@@ -6,7 +6,7 @@
     curve: secp384r1
 
 - name: Set ssl.key variable if ssl.key == nokey
-  set_fact:
+  ansible.builtin.set_fact:
     ssl_key: "/opt/key_ssl/private/{{ server_address }}.pem"
 
 - name: Generate an OpenSSL Certificate Signing Request with Subject information
@@ -26,5 +26,5 @@
     provider: selfsigned
 
 - name: Set ssl.cert variable if ssl.cert == nocert
-  set_fact:
+  ansible.builtin.set_fact:
     ssl_cert: "/opt/key_ssl/crt/{{ server_address }}.crt"

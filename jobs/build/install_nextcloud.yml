@@ -1,6 +1,6 @@
 ---
 - name: Download nextcloud zip file
-  get_url:
+  ansible.builtin.get_url:
     url: "{{ app.link }}"
     dest: /opt
 
@@ -11,6 +11,6 @@
     remote_src: true
 
 - name: Delete nextcloud zip file
-  file:
+  ansible.builtin.file:
     path: /opt/latest.zip
     state: absent
