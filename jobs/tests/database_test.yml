@@ -10,5 +10,3 @@
   until: db_result is succeeded
   retries: 10
   delay: 10
-
-

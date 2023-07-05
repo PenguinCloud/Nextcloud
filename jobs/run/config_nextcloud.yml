@@ -7,7 +7,7 @@
 - name: Run occ installation command
   command: >
     php occ maintenance:install
-    --database=mysql
+    --database={{ database.type}}
     --database-host={{ database.host }}
     --database-name={{ database.name }}
     --database-user={{ database.user }}
@@ -17,12 +17,6 @@
   args:
     chdir: /opt/nextcloud
   when: result.stat.exists == False
-
-#- name: Run occ to set trusted domains
-#  shell: php occ config:system:set trusted_domains --value={{ trusted_domain }}
-#  args:
-#    chdir: /opt/nextcloud
-
 - name: Run OCC to set redis
   command: >
     php occ config:system:set redis host --value={{ redis.host }}

@@ -2,7 +2,7 @@
   ansible.builtin.file:
     path: /etc/php/8.1/fpm
     state: directory
-    recurse: yes
+    recurse: true
     owner: "{{ run.user }}"
     group: "{{ run.user }}"
 
@@ -15,7 +15,7 @@
   ansible.builtin.file:
     path: /run/php
     state: directory
-    recurse: yes
+    recurse: true
     owner: "{{ run.user }}"
     group: "{{ run.user }}"
 
@@ -23,6 +23,6 @@
   ansible.builtin.file:
     path: /var/log
     state: directory
-    recurse: yes
+    recurse: true
     owner: "{{ run.user }}"
     group: "{{ run.user }}"

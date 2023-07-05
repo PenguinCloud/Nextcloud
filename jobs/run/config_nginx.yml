@@ -3,19 +3,16 @@
   template:
     src: /opt/manager/templates/nginx.j2
     dest: /etc/nginx/nginx.conf
-    force: yes
-
+    force: true
 - name: Configure nginx http webserver
   template:
     src: /opt/manager/templates/nextcloud_http.j2
     dest: /etc/nginx/conf.d/nextcloud_http.conf
-    force: yes
+    force: true
   when: protocol == "http"
-
 - name: Configure nginx https webserver
   template:
     src: /opt/manager/templates/nextcloud_https.j2
     dest: /etc/nginx/conf.d/nextcloud_https.conf
-    force: yes
+    force: true
   when: protocol == "https"
-

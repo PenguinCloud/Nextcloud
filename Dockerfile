@@ -1,4 +1,4 @@
-FROM code-dal1.penguintech.group:5050/ptg/standards/docker-ansible-image:stable
+FROM ghcr.io/penguincloud/core
 LABEL company="Penguin Tech Group LLC"
 LABEL org.opencontainers.image.authors="info@penguintech.group"
 LABEL license="GNU AGPL3"
@@ -19,6 +19,7 @@ RUN ansible-playbook build.yml -c local
 
 # PUT YER ENVS in here
 ENV DATABASE_NAME="nextcloud"
+ENV DATABASE_TYPE="mysql"
 ENV DATABASE_USER="nextcloud"
 ENV DATABASE_PASSWORD="p@ssword"
 ENV DATABASE_HOST="mariadb"

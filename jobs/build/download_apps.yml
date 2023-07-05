@@ -3,5 +3,5 @@
   ansible.builtin.unarchive:
     src: "{{ item }}"
     dest: /opt/nextcloud/apps
-    remote_src: yes
+    remote_src: true
   with_items: "{{ nextcloud_apps }}"

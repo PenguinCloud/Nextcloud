@@ -3,20 +3,16 @@
   connection: local
   vars_files:
     - vars/base.yml
-  become: yes
+  become: true
   become_user: root
   remote_user: root
   tasks:
     - name: Include nodeType variables
       include_vars:
-        file: "vars/{{ BUILD_ENVIRONMENT }}.yml"
+        file: "vars/base9.yml"
       tags:
         - always
-      ignore_errors: yes
-    - name: Include Special Variables
-      include_vars:
-        file: "vars/{{ lookup('env', 'COMPUTE_ENV') | default( 'base', True) }}.yml"
-      ignore_errors: yes
+      ignore_errors: true
     - name: Build And Install
       include_tasks:
         file: jobs/build/build.yml
@@ -33,7 +29,6 @@
             - run
       tags:
         - run
-#    The database test needs to run before we run the commands to install nextcloud to create the php.config file
     - name: Test database connectivity
       include_tasks:
         file: jobs/tests/database_test.yml
@@ -51,8 +46,8 @@
         file: jobs/run/config_nextcloud.yml
         apply:
           tags:
-          - config-nextcloud
-          - run
+            - config-nextcloud
+            - run
       tags:
         - config_nextcloud
         - run
@@ -62,11 +57,11 @@
         file: jobs/run/apps_nextcloud.yml
         apply:
           tags:
-          - app_install
-          - run
+            - app_install
+            - run
       tags:
-      - app_install
-      - run
+        - app_install
+        - run
     - name: Run tests to make sure build and run applied application correctly
       include_tasks:
         file: jobs/tests/test.yml
@@ -85,10 +80,3 @@
             - exec
       tags:
         - exec
-#    This section is not needed because we enable nginx daemon
-#    - name: Run tests to make sure app is running as expected
-#      include_tasks:
-#        file: jobs/run/test.yml
-#      tags:
-#        - exec
-#        - test
