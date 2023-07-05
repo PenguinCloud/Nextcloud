@@ -3,4 +3,4 @@
   template:
     src: /opt/manager/templates/www_config.j2
     dest: /etc/php/8.1/fpm/pool.d/www.conf
-    force: yes
+    force: true

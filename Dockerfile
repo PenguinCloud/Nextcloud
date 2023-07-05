@@ -19,6 +19,7 @@ RUN ansible-playbook build.yml -c local
 
 # PUT YER ENVS in here
 ENV DATABASE_NAME="nextcloud"
+ENV DATABASE_TYPE="mysql"
 ENV DATABASE_USER="nextcloud"
 ENV DATABASE_PASSWORD="p@ssword"
 ENV DATABASE_HOST="mariadb"

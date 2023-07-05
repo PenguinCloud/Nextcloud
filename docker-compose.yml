@@ -4,7 +4,7 @@ services:
   mariadb:
     image: 'mariadb:latest'
     restart: always
-    command:  --transaction-isolation=READ-COMMITTED --binlog-format=ROW --skip-innodb-read-only-compressed
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW --skip-innodb-read-only-compressed
     environment:
       - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=yes
       - MARIADB_PASSWORD=p@ssword

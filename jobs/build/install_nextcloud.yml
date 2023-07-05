@@ -8,7 +8,7 @@
   ansible.builtin.unarchive:
     src: /opt/latest.zip
     dest: /opt
-    remote_src: yes
+    remote_src: true
 
 - name: Delete nextcloud zip file
   file:

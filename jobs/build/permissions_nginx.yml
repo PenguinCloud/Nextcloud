@@ -3,7 +3,7 @@
   ansible.builtin.file:
     path: /opt/nextcloud
     state: directory
-    recurse: yes
+    recurse: true
     owner: "{{ run.user }}"
     group: "{{ run.user }}"
 
@@ -11,7 +11,7 @@
   ansible.builtin.file:
     path: /var/lib/nginx
     state: directory
-    recurse: yes
+    recurse: true
     owner: "{{ run.user }}"
     group: "{{ run.user }}"
 
@@ -19,7 +19,7 @@
   ansible.builtin.file:
     path: /etc/nginx
     state: directory
-    recurse: yes
+    recurse: true
     owner: "{{ run.user }}"
     group: "{{ run.user }}"
 
@@ -27,7 +27,7 @@
   ansible.builtin.file:
     path: /run
     state: directory
-    recurse: yes
+    recurse: true
     owner: "{{ run.user }}"
     group: "{{ run.user }}"
 
