@@ -1,7 +1,7 @@
 - name: Building Image
   hosts: localhost
   connection: local
-  gather_facts: no
+  gather_facts: false
   vars_files:
     - vars/base.yml
   become: true
