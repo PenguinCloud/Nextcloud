@@ -51,12 +51,8 @@ use_default_rules: true
 # the use of skip_list below because that will hide violations from the output.
 # When putting ignores inside the ignore file, they are marked as ignored, but
 # still visible, making it easier to address later.
-skip_list:
-  - skip_this_tag
-  - command-instead-of-shell
-  - no-changed-when
-  - risky-file-permissions
-  - jinja[spacing]
+#skip_list:
+# -1
 
 # Ansible-lint does not automatically load rules that have the 'opt-in' tag.
 # You must enable opt-in rules by listing each rule 'id' below.
@@ -76,7 +72,13 @@ enable_list:
 # Ansible-lint does not fail on warnings from the rules or tags listed below
 warn_list:
   - skip_this_tag
-  - experimental # experimental is included in the implicit list
+  - experimental
+  - skip_this_tag
+  - command-instead-of-shell
+  - no-changed-when
+  - risky-file-permissions
+  - jinja[spacing]1 
+  # experimental is included in the implicit list
   # - role-name
   # - yaml[document-start]  # you can also use sub-rule matches
 
