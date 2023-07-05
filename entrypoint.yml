@@ -4,8 +4,11 @@
   connection: local
   vars_files:
     - vars/base.yml
+    - vars/apps.yml
   tasks:
     - name: Build Actions
+      tags: 
+        - build
       block:
         - name: Install Nextcloud Dependencies
           include_tasks:
@@ -38,54 +41,52 @@
             apply:
               tags:
                 - build
-        tags:
-          - build
+ 
     - name: Run Actions
+      tags: 
+        - run
       block:
         - name: Generate SSL certificate
-            include_tasks:
-              file: jobs/run/ssl_generate.yml
-              apply:
-                tags:
-                  - run
-            when: ssl_cert == "open"
+          include_tasks:
+            file: jobs/run/ssl_generate.yml
+            apply:
+              tags:
+                - run
+          when: ssl_cert == "open"
 
-          - name: Configure PHP_FPM
-            include_tasks:
-              file: config_phpfpm.yml
-               apply:
-                tags:
-                  - run             
-
-          - name: Configure NGINX
-            include_tasks:
-              file: config_nginx.yml
-              apply:
-                tags:
-                  - run
-          - name: Test database
-            include_tasks:
-              file: jobs/tests/database_test.yml
-              apply:
-                tags:
-                  - run
-          - name: Configure nextcloud.yml
-            include_tasks:
-              file: config_nextcloud.yml
-              apply:
-                tags:
-                  - run
-          - name: Install apps
-            include_tasks:
-              file: apps_nextcloud.yml
-              apply:
-                tags:
-                  - run           
-        tags:
-          - run
-    - name: Execute application
-      include_tasks:
-        file: jobs/run/exec.yml
-    - name: Run tests to make sure app is running as expected
-      include_tasks:
-        file: jobs/tests/test.yml
+        - name: Configure PHP_FPM
+          include_tasks:
+            file: config_phpfpm.yml
+            apply:
+              tags:
+                - run             
+        - name: Configure NGINX
+          include_tasks:
+            file: jobs/run/config_nginx.yml
+            apply:
+              tags:
+                - run
+        - name: Test database
+          include_tasks:
+            file: jobs/tests/database_test.yml
+            apply:
+              tags:
+                - run
+        - name: Configure nextcloud.yml
+          include_tasks:
+            file: jobs/run/config_nextcloud.yml
+            apply:
+              tags:
+                - run
+        - name: Install apps
+          include_tasks:
+            file: jobs/run/apps_nextcloud.yml
+            apply:
+              tags:
+                - run           
+        - name: Test Nginx
+          include_tasks:
+            file: jobs/tests/test_nginx.yml
+            apply:
+              tags:
+                - run  
