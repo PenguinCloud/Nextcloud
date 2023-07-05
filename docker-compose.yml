@@ -24,7 +24,7 @@ services:
     networks:
       - nextcloud
   nextcloud:
-    image: penguintech/nextcloud
+    image: penguincloud/nextcloud
     build: .
     ports:
       - "8080:8080"
