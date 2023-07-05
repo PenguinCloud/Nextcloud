@@ -23,7 +23,7 @@
       - php8.1-intl
       - php8.1-bcmath
       - php8.1-gmp
-      - python-openssl
+      - python3-openssl
       - python3-pymysql
     state: latest
     update_cache: true
