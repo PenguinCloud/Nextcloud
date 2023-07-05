@@ -39,7 +39,7 @@
           include_tasks:
             file: jobs/build/create_cert_directories.yml
             apply:
-              tags:1
+              tags:
                 - build
     - name: Run Actions
       tags:
