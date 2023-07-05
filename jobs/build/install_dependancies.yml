@@ -6,7 +6,7 @@
 - name: Install Dependencies
   apt:
     pkg:
-      - nginx
+      - nginx-core
       - php8.1
       - imagemagick
       - php8.1-imagick
