@@ -1,6 +1,6 @@
 ---
 run:
-  user: ptg-user
+  user: www-data
 app:
   title: "{{ lookup('ansible.builtin.env', 'APP_TILE') }}"
   link: "{{ lookup('env', 'APP_LINK') }}"

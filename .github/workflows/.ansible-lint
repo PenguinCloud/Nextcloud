@@ -91,7 +91,7 @@ warn_list:
 #   - all
 
 # Offline mode disables installation of requirements.yml and schema refreshing
-offline: true
+offline: false
 
 # Return success if number of violations compared with previous git
 # commit has not increased. This feature works only in git
@@ -130,7 +130,6 @@ kinds:
 
 # Allow setting custom prefix for name[prefix] rule
 task_name_prefix: "{stem} | "
-offline: false 
 mock_modules:
   - community.crypto.openssl_privatekey
   - community.crypto.openssl_csr

@@ -3,12 +3,18 @@
   ansible.builtin.get_url:
     url: "{{ app.link }}"
     dest: /opt
+    owner: "{{ run.user }}"
+    group: "{{ run.user }}"
+    mode: 0500
 
 - name: Extract and download Nextcloud
   ansible.builtin.unarchive:
     src: /opt/latest.zip
     dest: /opt
     remote_src: true
+    owner: "{{ run.user }}"
+    group: "{{ run.user }}"
+    mode: 0700
 
 - name: Delete nextcloud zip file
   ansible.builtin.file:

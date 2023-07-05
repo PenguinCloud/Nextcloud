@@ -5,6 +5,7 @@
     state: directory
     owner: "{{ run.user }}"
     group: "{{ run.user }}"
+    mode: 0700
 
 - name: Create private cert directory
   ansible.builtin.file:
@@ -12,6 +13,7 @@
     state: directory
     owner: "{{ run.user }}"
     group: "{{ run.user }}"
+    mode: 0700
 
 - name: Create csr directory
   ansible.builtin.file:
@@ -19,6 +21,7 @@
     state: directory
     owner: "{{ run.user }}"
     group: "{{ run.user }}"
+    mode: 0700
 
 - name: Create crt repo
   ansible.builtin.file:
@@ -26,3 +29,4 @@
     state: directory
     owner: "{{ run.user }}"
     group: "{{ run.user }}"
+    mode: 0700
