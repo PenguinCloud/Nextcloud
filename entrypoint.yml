@@ -23,7 +23,7 @@
             apply:
               tags:
                 - build
-        - name: set permissions for nginx
+        - name: Set permissions for nginx
           ansible.builtin.include_tasks:
             file: jobs/build/permissions_nginx.yml
             apply:
@@ -31,7 +31,7 @@
                 - build
         - name: Set permissions for php-fpm
           ansible.builtin.include_tasks:
-            file: jobs/build/6permissions_phpfpm.yml
+            file: jobs/build/permissions_phpfpm.yml
             apply:
               tags:
                 - build
@@ -55,7 +55,7 @@
 
         - name: Configure PHP_FPM
           ansible.builtin.include_tasks:
-            file: config_phpfpm.yml
+            file: jobs/run/config_phpfpm.yml
             apply:
               tags:
                 - run
