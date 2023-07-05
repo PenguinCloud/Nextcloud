@@ -6,7 +6,7 @@
     force: true
     owner: "{{ run.user }}"
     group: "{{ run.user }}"
-    mode: 0500
+    mode: '0500'
 - name: Configure nginx http webserver
   ansible.builtin.template:
     src: /opt/manager/templates/nextcloud_http.j2
@@ -14,7 +14,7 @@
     force: true
     owner: "{{ run.user }}"
     group: "{{ run.user }}"
-    mode: 0500
+    mode: '0500'
   when: protocol == "http"
 - name: Configure nginx https webserver
   ansible.builtin.template:
@@ -23,5 +23,5 @@
     force: true
     owner: "{{ run.user }}"
     group: "{{ run.user }}"
-    mode: 0500
+    mode: '0500'
   when: protocol == "https"

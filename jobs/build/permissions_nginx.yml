@@ -6,7 +6,7 @@
     recurse: true
     owner: "{{ run.user }}"
     group: "{{ run.user }}"
-    mode: 0700
+    mode: '0700'
 
 - name: Recursively change ownership of /var/lib/nginx
   ansible.builtin.file:
@@ -15,7 +15,7 @@
     recurse: true
     owner: "{{ run.user }}"
     group: "{{ run.user }}"
-    mode: 0700
+    mode: '0700'
 
 - name: Recursively change ownership for etc/nginx
   ansible.builtin.file:
@@ -24,7 +24,7 @@
     recurse: true
     owner: "{{ run.user }}"
     group: "{{ run.user }}"
-    mode: 0700
+    mode: '0700'
 
 - name: Recursively change ownership for /run to run the pid file
   ansible.builtin.file:
@@ -33,5 +33,5 @@
     recurse: true
     owner: "{{ run.user }}"
     group: "{{ run.user }}"
-    mode: 0700
+    mode: '0700'
   

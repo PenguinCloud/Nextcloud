@@ -5,7 +5,7 @@
     dest: /opt
     owner: "{{ run.user }}"
     group: "{{ run.user }}"
-    mode: 0500
+    mode: '0500'
 
 - name: Extract and download Nextcloud
   ansible.builtin.unarchive:
@@ -14,7 +14,7 @@
     remote_src: true
     owner: "{{ run.user }}"
     group: "{{ run.user }}"
-    mode: 0700
+    mode: '0700'
 
 - name: Delete nextcloud zip file
   ansible.builtin.file:
