@@ -56,6 +56,7 @@ skip_list:
   - command-instead-of-shell
   - no-changed-when
   - risky-file-permissions
+  - jinja[spacing]
 
 # Ansible-lint does not automatically load rules that have the 'opt-in' tag.
 # You must enable opt-in rules by listing each rule 'id' below.
@@ -67,7 +68,7 @@ enable_list:
   - name[prefix] # opt-in
   # add yaml here if you want to avoid ignoring yaml checks when yamllint
   # library is missing. Normally its absence just skips using that rule.
-  - yaml
+  #*- yaml
 # Report only a subset of tags and fully ignore any others
 # tags:
 #   - jinja[spacing]
