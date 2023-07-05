@@ -4,18 +4,24 @@
     src: /opt/manager/templates/nginx.j2
     dest: /etc/nginx/nginx.conf
     force: true
-    owner: www-data
+    owner: "{{ run.user }}"
+    group: "{{ run.user }}"
+    mode: 0500
 - name: Configure nginx http webserver
   ansible.builtin.template:
     src: /opt/manager/templates/nextcloud_http.j2
     dest: /etc/nginx/conf.d/nextcloud_http.conf
     force: true
-    owner: www-data
+    owner: "{{ run.user }}"
+    group: "{{ run.user }}"
+    mode: 0500
   when: protocol == "http"
 - name: Configure nginx https webserver
   ansible.builtin.template:
     src: /opt/manager/templates/nextcloud_https.j2
     dest: /etc/nginx/conf.d/nextcloud_https.conf
     force: true
-    owner: www-data
+    owner: "{{ run.user }}"
+    group: "{{ run.user }}"
+    mode: 0500
   when: protocol == "https"

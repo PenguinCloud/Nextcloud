@@ -44,7 +44,7 @@ ENV SSL_CERT="open"
 ENV PROTOCOL="https"
 
 # Switch to non-root user
-USER ptg-user
+USER www-data
 
 EXPOSE 8080
 
