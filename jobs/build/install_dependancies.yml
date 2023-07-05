@@ -8,6 +8,7 @@
     pkg:
       - nginx-core
       - php8.1
+      - composer
       - imagemagick
       - php8.1-imagick
       - php8.1-common
@@ -26,4 +27,3 @@
       - python3-openssl
       - python3-pymysql
     state: latest
-    update_cache: true
