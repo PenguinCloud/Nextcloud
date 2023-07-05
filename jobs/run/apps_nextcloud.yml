@@ -3,5 +3,5 @@
   ansible.builtin.shell:
     cmd: "php occ app:install {{ item }}"
     chdir: /opt/nextcloud
-  with_items: "{{ apps }}"
+  with_items: "{{ apps }}""
   become_user: www-data
