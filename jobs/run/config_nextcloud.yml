@@ -3,7 +3,6 @@
   ansible.builtin.stat:
     path: /opt/nextcloud/config/config.php
   register: result
-
 - name: Run occ installation command
   ansible.builtin.shell:
     cmd: |
@@ -17,7 +16,7 @@
       --admin-pass={{ admin.password }}
     chdir: /opt/nextcloud
     become_user: www-data
-  when: result.stat.exists == False
+  when: not result.stat.exists
 - name: Run OCC to set redis
   ansible.builtin.shell: 
     cmd: |

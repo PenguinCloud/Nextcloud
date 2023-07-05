@@ -1,7 +1,7 @@
 ---
 - name: Test for running nginx
   ansible.builtin.shell: 
-    cmd: 9ps waux | grep nginx
+    cmd: ps waux | grep nginx
   register: nginx_result
   failed_when: nginx_result.stdout_lines | length == 1
 

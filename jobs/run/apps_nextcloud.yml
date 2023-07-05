@@ -5,5 +5,3 @@
     chdir: /opt/nextcloud
   with_items: "{{ apps }}"
   become_user: www-data
-
-    
