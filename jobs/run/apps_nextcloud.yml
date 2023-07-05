@@ -1,6 +1,7 @@
 ---
 - name: Run occ to install apps
-  command: php occ app:enable "{{ item }}"
+  command: php occ app:install "{{ item }}"
   with_items: "{{ apps }}"
+  become_user: www-data
   args:
     chdir: /opt/nextcloud

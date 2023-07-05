@@ -4,23 +4,89 @@
   connection: local
   vars_files:
     - vars/base.yml
+    - vars/apps.yml
   tasks:
-    - name: Include nodeType variables
-      include_vars:
-        file: "vars/{{ BUILD_ENVIRONMENT }}.yml"
-      tags:
-        - always
-      ignore_errors: true
-    - name: Include Special Variables
-      include_vars:
-        file: "vars/{{ lookup('env', 'COMPUTE_ENV') | default( 'base', True) }}.yml"
-      ignore_errors: true
-    - name: Run And Configure
-      include_tasks:
-        file: jobs/run/run.yml
-    - name: Execute application
-      include_tasks:
-        file: jobs/run/exec.yml
-    - name: Run tests to make sure app is running as expected
-      include_tasks:
-        file: jobs/tests/test.yml
+    - name: Build Actions
+      tags: 
+        - build
+      block:
+        - name: Install Nextcloud Dependencies
+          include_tasks:
+            file: jobs/build/install_dependancies.yml
+            apply:
+              tags:
+                - build
+
+        - name: Install Nextcloud
+          include_tasks:
+            file: jobs/build/install_nextcloud.yml
+            apply:
+              tags:
+                - build
+        - name: set permissions for nginx
+          include_tasks:
+            file: jobs/build/permissions_nginx.yml
+            apply:
+              tags:
+                - build
+        - name: Set permissions for php-fpm
+          include_tasks:
+            file: jobs/build/6permissions_phpfpm.yml
+            apply:
+              tags:
+                - build
+        - name: Create open ssl certificate repo's
+          include_tasks:
+            file: jobs/build/create_cert_directories.yml
+            apply:
+              tags:
+                - build
+ 
+    - name: Run Actions
+      tags: 
+        - run
+      block:
+        - name: Generate SSL certificate
+          include_tasks:
+            file: jobs/run/ssl_generate.yml
+            apply:
+              tags:
+                - run
+          when: ssl_cert == "open"
+
+        - name: Configure PHP_FPM
+          include_tasks:
+            file: config_phpfpm.yml
+            apply:
+              tags:
+                - run             
+        - name: Configure NGINX
+          include_tasks:
+            file: jobs/run/config_nginx.yml
+            apply:
+              tags:
+                - run
+        - name: Test database
+          include_tasks:
+            file: jobs/tests/database_test.yml
+            apply:
+              tags:
+                - run
+        - name: Configure nextcloud.yml
+          include_tasks:
+            file: jobs/run/config_nextcloud.yml
+            apply:
+              tags:
+                - run
+        - name: Install apps
+          include_tasks:
+            file: jobs/run/apps_nextcloud.yml
+            apply:
+              tags:
+                - run           
+        - name: Test Nginx
+          include_tasks:
+            file: jobs/tests/test_nginx.yml
+            apply:
+              tags:
+                - run  

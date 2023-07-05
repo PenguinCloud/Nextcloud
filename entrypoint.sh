@@ -1,4 +1,4 @@
 #!/bin/bash
-ansible-playbook entrypoint.yml  -c local
-echo "Sleeping awaiting action!"
-/bin/sleep infinity
+ansible-playbook entrypoint.yml  -c local --tags "run"
+echo "starting server"
+/usr/sbin/nginx start

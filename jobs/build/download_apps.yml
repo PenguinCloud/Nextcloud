@@ -1,7 +1,0 @@
----
-- name: Downloads and extracts apps
-  ansible.builtin.unarchive:
-    src: "{{ item }}"
-    dest: /opt/nextcloud/apps
-    remote_src: true
-  with_items: "{{ nextcloud_apps }}"

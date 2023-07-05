@@ -15,7 +15,7 @@ ARG APP_TITLE="Nextcloud"
 ARG APP_LINK="https://download.nextcloud.com/server/releases/latest.zip"
 
 # BUILD IT!
-RUN ansible-playbook build.yml -c local
+RUN ansible-playbook entrypoint.yml -c local --tags "build"
 
 # PUT YER ENVS in here
 ENV DATABASE_NAME="nextcloud"
